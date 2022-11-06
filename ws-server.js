@@ -1,17 +1,21 @@
 const { WebSocketServer } = require("ws");
 const config = require("./config");
 
-const wss = new WebSocketServer({ port: config.wsPort });
+function init(server) {
+  const wss = new WebSocketServer({ server });
 
-let connected = false;
+  let connected = false;
 
-wss.on("connection", (ws, req) => {
-  console.info("Connected to IP: ", req.socket.remoteAddress);
-  connected = true;
-});
+  wss.on("connection", (ws, req) => {
+    console.info("Connected to IP: ", req.socket.remoteAddress);
+    connected = true;
+  });
 
-wss.on("close", () => {
-  console.warn("Connection closed");
-});
+  wss.on("close", () => {
+    console.warn("Connection closed");
+  });
 
-module.exports = wss;
+  return wss;
+}
+
+module.exports = init;
