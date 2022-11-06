@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <button id="button">CLICK ME</button>
+  <script>
+    const source = new EventSource("http://localhost:8082/events")
+
+    source.addEventListener("message", (d) => {
+      console.info("Received message: ", d)
+    })
+
+    document.getElementById("button").addEventListener("click", () => {
+      fetch("http://localhost:8082/command", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json"
+        },
+        body: JSON.stringify({message: "sup"})
+      })
+    })
+  </script>
+</body>
+</html>
