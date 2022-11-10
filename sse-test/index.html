@@ -9,7 +9,7 @@
 <body>
   <button id="button">CLICK ME</button>
   <script>
-    const source = new EventSource("http://localhost:8082/events")
+    const source = new EventSource("http://localhost:8082/events/device")
 
     source.addEventListener("message", (d) => {
       console.info("Received message: ", d)
