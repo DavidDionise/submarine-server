@@ -1,7 +1,7 @@
 const express = require("express");
-const config = require("../config");
+const config = require("./config");
 const cors = require("cors");
-const DeviceEventEmitter = require("../device-event-emitter");
+const DeviceEventEmitter = require("./device-event-emitter");
 
 const app = express();
 const deviceEventEmitter = new DeviceEventEmitter();
